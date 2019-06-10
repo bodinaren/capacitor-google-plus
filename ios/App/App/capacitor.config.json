@@ -1,0 +1,7 @@
+{
+  "appId": "com.example.app",
+  "appName": "capacitor-google-plus",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}
