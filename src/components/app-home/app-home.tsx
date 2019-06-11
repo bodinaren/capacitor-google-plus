@@ -1,4 +1,5 @@
 import { Component, h } from '@stencil/core';
+import { GooglePlus } from "@ionic-native/google-plus";
 
 @Component({
   tag: 'app-home',
@@ -7,6 +8,16 @@ import { Component, h } from '@stencil/core';
 })
 export class AppHome {
 
+  private googleLoginResult = "";
+
+  private googleLogin() {
+    GooglePlus.login({}).then((result) => {
+      this.googleLoginResult = JSON.stringify(result);
+    }, (err) => {
+      alert("Faaaaail: " + JSON.stringify(err));
+    });
+  }
+  
   render() {
     return (
       <div class='app-home'>
@@ -16,6 +27,12 @@ export class AppHome {
           web components using Stencil!
           Check out our docs on <a href='https://stenciljs.com'>stenciljs.com</a> to get started.
         </p>
+
+        <button onClick={() => this.googleLogin()}>
+          Google Login
+        </button>
+
+        { this.googleLoginResult && <div>{ this.googleLoginResult }</div> }
 
         <stencil-route-link url='/profile/stencil'>
           <button>
